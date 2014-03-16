@@ -1,0 +1,22 @@
+e.后台会员列表，点击查看时，需要一个会员详情页。
+账户设置中：重新绑定邮箱的四步操作：
+namespace:/member/buyers
+第一步：检测当前邮箱号输入是否正确
+CustomerAccountUpdateAction_checkCurrentEmail.json
+第二步：检测新输入邮箱是否正确
+CustomerAccountUpdateAction_checkNewEmail.json
+第三步：发送验证码
+CustomerAccountUpdateAction_sendUpdateCheckCodeToEmail.json
+第四步：使用表单提交修改成功的信息：
+namespace: /member/buyers
+CustomerInforSubmit_updateEmail.json
+发布公告模块。后台action已经写好：
+显示会员列表：
+namespace :admin
+url :fa3_show.json
+显示店铺列表：
+namespace:admin
+url:fa4_show.json
+发送短信：
+namespace:admin
+url:fa6_sendToMobile.json

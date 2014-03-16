@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+
+
+	<!-- 后台管理 -->
+
+
+	<package name="loginp" extends="struts-default" namespace="/admin">
+
+		<action name="admin_*" class="com.lyq.action.admin.LoginAndOut"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/admin.jsp</result>
+			<result name="input">/admin/login.jsp</result>
+		</action>
+		
+		<action name="updateDeal_*" class="com.lyq.action.admin.UpdateDeal" 
+			method="{1}"> <result name="success">/WEB-INF/pages/admin/slides/slides_list.jsp 
+			</result> <result name="input">/WEB-INF/pages/admin/slides/slides_list.jsp 
+			</result> <result name="slidesAdd">/WEB-INF/pages/admin/slides/slides_add.jsp 
+			</result> <result name="slides_show">/WEB-INF/pages/admin/slides/slides_show.jsp 
+			</result> <result name="slides_modified">/WEB-INF/pages/admin/slides/slides_add.jsp 
+			</result> <result name="big_banner">/WEB-INF/pages/slides/bigBanner.jsp</result> 
+			<result name="repassword">/WEB-INF/pages/admin/reset/repassword.jsp</result>
+			<result name="repassword_success">/WEB-INF/pages/admin/reset/repassword_success.jsp</result>
+			</action> 
+	</package>
+<!-- 
+	<package name="login3" extends="struts-default" namespace="/admin">
+		<action name="login_*" class="com.lyq.action.admin.Login"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/admin.jsp</result>
+			<result name="input">/WEB-INF/pages/admin/admin.jsp</result>
+			<result name="admin_body">/WEB-INF/pages/admin/admin_body.jsp</result>
+			<result name="admin_menu">/WEB-INF/pages/admin/admin_menu.jsp</result>
+		</action>
+	</package> -->
+
+	<package name="test" extends="struts-default" namespace="/admin">
+
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.lyq.admin.interceptor.LoginInterceptor">
+			</interceptor>
+			<interceptor-stack name="mydefault">				
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefault" />
+		<global-results>
+			<result name="admin_login">/admin/login.jsp</result>
+		</global-results>
+
+
+		<!-- <interceptors> <interceptor name="loginInterceptor" class="com.lyq.admin.interceptor.AdminInterceptor"> 
+			</interceptor> <interceptor-stack name="loginDefaultStack"> <interceptor-ref 
+			name="loginInterceptor"></interceptor-ref> <interceptor-ref name="defaultStack"></interceptor-ref> 
+			</interceptor-stack> </interceptors> <default-interceptor-ref name="loginDefaultStack"></default-interceptor-ref> 
+			<global-results> <result name="login" type="redirect">/admin/login.jsp</result> 
+			</global-results> -->
+
+		<action name="login_*" class="com.lyq.action.admin.Login"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/admin.jsp</result>
+			<result name="input">/WEB-INF/pages/admin/admin.jsp</result>
+			<result name="admin_body">/WEB-INF/pages/admin/admin_body.jsp</result>
+			<result name="admin_menu">/WEB-INF/pages/admin/admin_menu.jsp</result>
+		</action>
+
+		<action name="productA_*" class="com.lyq.action.admin.ProductDeal"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/product/product_list.jsp
+			</result>
+			<result name="input">/product_list.jsp</result>
+			<result name="add_product">/WEB-INF/pages/admin/product/product_add.jsp
+			</result>
+			<result name="delete_success">/WEB-INF/pages/admin/product/product_list.jsp
+			</result>
+			<result name="modified">/WEB-INF/pages/admin/product/product_add.jsp
+			</result>
+			<result name="product_show">/WEB-INF/pages/admin/product/product_show.jsp
+			</result>
+
+		</action>
+		<action name="storeDeal_*" class="com.lyq.action.admin.StoreDeal"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/store/store_list.jsp
+			</result>
+			<result name="input">/WEB-INF/pages/admin/store/store_list.jsp
+			</result>
+			<result name="store_show">/WEB-INF/pages/admin/store/store_show.jsp
+			</result>
+			<result name="add_store">/WEB-INF/pages/admin/store/store_add.jsp</result>
+			<result name="modified">/WEB-INF/pages/admin/store/store_add.jsp</result>
+			<result name="audits_store">/WEB-INF/pages/admin/store/audit_list.jsp</result>
+		</action>
+		<action name="tuanDeal_*" class="com.lyq.action.admin.TuanDeal"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/tuan/tuan_list.jsp
+			</result>
+			<result name="input">/WEB-INF/pages/admin/store/store_list.jsp
+			</result>
+			<result name="tuan_show">/WEB-INF/pages/admin/tuan/tuan_show.jsp</result>
+			<result name="modified">/WEB-INF/pages/admin/tuan/tuan_modify.jsp
+			</result>
+		</action>
+
+		<action name="orderDeal_*" class="com.lyq.action.admin.OrderDeal"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/admin/order/order_list.jsp
+			</result>
+			<result name="input">/WEB-INF/pages/admin/order/order_list.jsp
+			</result>
+			<result name="tuan_show">/WEB-INF/pages/admin/order/tuan_show.jsp</result>
+			<result name="modified">/WEB-INF/pages/admin/order/tuan_modify.jsp
+			</result>
+		</action>
+		
+		
+		<action name="adsend">
+			<result>/WEB-INF/pages/admin/ads/note_send.jsp</result>
+			<result>/WEB-INF/pages/admin/ads/email_send.jsp</result>
+			<result>/WEB-INF/pages/admin/ads/list_send.jsp</result>
+		</action>
+
+
+
+		<!-- -->
+	</package>
+	<package name="defaultjson" extends="json-default" namespace="/adminjson">
+		<action name="jsondeal_*" class="com.lyq.action.admin.JSONDeal"
+			method="{1}">
+
+			<result type="json">
+			</result>
+		</action>
+	</package>
+	
+	<!-- 首页搜索用的自动补全 -->
+	
+	<package name="defaultjsonfront" extends="json-default" namespace="/adminjson">
+		<action name="jsondeal_*" class="com.lyq.action.admin.JSONDeal"
+			method="{1}">
+
+			<result type="json">
+			</result>
+		</action>
+	</package>
+
+
+
+
+	<package name="shop.admin" namespace="/admin1" extends="shop-default">
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<!-- 验证用户登录的拦截器 -->
+			<interceptor name="loginInterceptor"
+				class="com.lyq.action.interceptor.UserLoginInterceptor" />
+			<interceptor-stack name="adminDefaultStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<action name="admin_*" class="indexAction" method="{1}">
+			<result name="top">/WEB-INF/pages/admin/top.jsp</result>
+			<result name="left">/WEB-INF/pages/admin/left.jsp</result>
+			<result name="right">/WEB-INF/pages/admin/right.jsp</result>
+			<interceptor-ref name="adminDefaultStack" />
+		</action>
+	</package>
+	<package name="shop.admin.user" namespace="/admin/user"
+		extends="shop-default">
+		<action name="user_*" method="{1}" class="userAction"></action>
+	</package>
+	<!-- 类别管理 -->
+	<package name="shop.admin.category" namespace="/admin/product"
+		extends="shop.admin">
+		<action name="category_*" method="{1}" class="productCategoryAction">
+			<result name="list">/WEB-INF/pages/admin/product/category_list.jsp
+			</result>
+			<result name="input">/WEB-INF/pages/admin/product/category_add.jsp
+			</result>
+			<result name="edit">/WEB-INF/pages/admin/product/category_edit.jsp
+			</result>
+			<interceptor-ref name="adminDefaultStack" />
+		</action>
+	</package>
+	<!-- 商品管理 -->
+	<package name="shop.admin.product" namespace="/admin/product"
+		extends="shop.admin">
+		<action name="product_*" method="{1}" class="productAction">
+			<result name="list">/WEB-INF/pages/admin/product/product_list.jsp
+			</result>
+			<result name="input">/WEB-INF/pages/admin/product/product_add.jsp
+			</result>
+			<result name="edit">/WEB-INF/pages/admin/product/product_edit.jsp
+			</result>
+			<interceptor-ref name="adminDefaultStack" />
+		</action>
+	</package>
+	<!-- 订单管理 -->
+	<package name="shop.admin.order" namespace="/admin/product"
+		extends="shop.admin">
+		<action name="order_*" method="{1}" class="orderAction">
+			<result name="list">/WEB-INF/pages/admin/order/order_list.jsp
+			</result>
+			<result name="select">/WEB-INF/pages/admin/order/order_select.jsp
+			</result>
+			<result name="query">/WEB-INF/pages/admin/order/order_query.jsp
+			</result>
+			<result name="update">/WEB-INF/pages/admin/order/order_update_success.jsp
+			</result>
+			<interceptor-ref name="adminDefaultStack" />
+		</action>
+	</package>
+</struts>

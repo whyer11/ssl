@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+
+	<!-- -->
+	<package name="product_area" extends="struts-default"
+		namespace="/area">
+		<action name="productArea_*" class="com.lyq.action.area.productAreaAction"
+			method="{1}">
+
+			<result name="areaList">/WEB-INF/pages/area/areaList.jsp
+			</result>
+			<result name="areaList1">/WEB-INF/pages/area/areaList1.jsp
+			</result>
+			<result name="storeList">/WEB-INF/pages/product/store_display.jsp</result>
+			<result name="getAllAreashouye">/WEB-INF/pages/area/getAllAreashouye.jsp</result>
+
+
+		</action>
+
+
+	</package>
+
+	<package name="storestore" extends="struts-default" namespace="/store">
+
+		<action name="storeshangquan_*" class="com.lyq.action.area.storeAction"
+			method="{1}">
+
+			<result name="StoreCoverArea">/WEB-INF/pages/store/StoreCoverArea1.jsp
+			</result>
+		</action>
+	</package>
+
+
+	<package name="store" extends="struts-default" namespace="/store">
+
+		<action name="store_*" class="com.lyq.action.area.storeAction"
+			method="{1}">
+
+			<result name="shouyeStoreList">/WEB-INF/pages/store/shouyeStoreList.jsp
+			</result>
+
+			<result name="store_list_leibiao">/WEB-INF/pages/product/store_display.jsp</result>
+			<result name="storeDetail">/WEB-INF/pages/store/storeDetail.jsp
+			</result>
+
+		</action>
+	</package>
+
+	<package name="getCatByFirst" extends="json-default">
+		<action name="category_*" class="com.lyq.action.product.productCategoryAction"
+			method="{1}">
+			<!-- 返回类型为json 在json-default中定义 -->
+			<result type="json">
+				<!-- root的值对应要返回的值的属性 -->
+				<!-- 这里的result值即是 对应action中的 result -->
+				<param name="root">categories</param>
+
+			</result>
+		</action>
+	</package>
+
+
+	<package name="getStoreByAreaAndCat" extends="json-default"
+		namespace="/store">
+
+		<action name="storeAreaCat_*" class="com.lyq.action.area.storeAction"
+			method="{1}">
+			<result type="json">
+				<param name="root">
+					listareastore1
+				</param>
+
+			</result>
+		</action>
+	</package>
+
+
+
+</struts>

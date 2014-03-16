@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	
+	<package name="productStoreSearch" namespace="/store" extends="struts-default">
+	<action name="search_*" class="com.lyq.action.area.storeAction"
+			method="{1}">
+	<result name="searchStore">/WEB-INF/pages/store/shousuo_leibiao.jsp</result>
+	</action>
+	</package>
+</struts>

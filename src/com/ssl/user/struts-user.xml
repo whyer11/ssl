@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<!-- 后台管理 -->
+	<package name="Shop" namespace="/admin" extends="shop-default">
+	 
+		<action name="AdministratorAction_*" class="com.ssl.user.AdministratorAction"
+			method="{1}">
+			<result>/pages/user/main.jsp</result>
+			  <result name="invalid.token">/input.jsp</result>  
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+	</package>
+	<!-- 账户设置时，利用form 提交 -->
+	<package name="shop.accountsubmit" namespace="/member/buyers"
+		extends="shop-default">
+		<action name="CustomerInforSubmit_*" class="com.ssl.user.action.admin.CustomerInforSubmit"
+			method="{1}">
+			<result name="success">/WEB-INF/pages/member/buyers/accountsetting.jsp</result>
+			 <result name="invalid.token">/WEB-INF/pages/member/buyers/accountsetting.jsp</result>    
+          <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" /> 
+		</action>
+	</package>
+	<!-- 信息修改时，利用json提交 -->
+	<package name="shop.username" namespace="/member/buyers"
+		extends="json-default">
+
+		<action name="CustomerAccountUpdateAction_*"
+			class="com.ssl.user.action.admin.CustomerAccountUpdateAction" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+
+	<package name="shop.InfoUpdate" namespace="/zhan" extends="shop-default">
+
+		<action name="updateinf"
+			class="com.ssl.user.action.admin.CustomerAdministrateAction">
+
+			<result name="success">/zhan/updateSuccess.jsp</result>
+			<result name="input">/zhan/updataCustomerInformation.jsp</result>
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+	</package>
+
+	<package name="shop.customerInsert" extends="struts-default"
+		namespace="/admin">
+		<!-- 会员列表页 -->
+		<action name="CusAdmAction_*" class="com.ssl.user.action.admin.CusAdmAction"
+			method="show">
+			<result name="success">/WEB-INF/pages/admin/member/member_list.jsp</result>
+			  
+   
+		</action>
+			<!-- 后台店铺审核页面 -->
+		<action name="AuditStoreAction_*" class="com.ssl.user.action.seller.AuditStoreAction" 
+		method="execute">
+			<result>/WEB-INF/pages/admin/store/audit_list.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/admin/store/audit_list.jsp</result>  
+             <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" /> 
+		</action>
+	</package>
+
+	<package name="shop.show" extends="struts-default" namespace="/admin">
+
+		<action name="CustomerStateAction_*" class="com.ssl.user.action.admin.CustomerStateAction"
+			method="{1}">
+			<result>/WEB-INF/pages/admin/member/member_list.jsp
+			</result>
+		</action>
+	</package>
+	<!-- 商家加盟 -->
+	<package name="shop.seller1" extends="struts-default" namespace="/">
+
+		<!-- 商家加盟跳转窗口 -->
+		<action name="Join1_*" class="com.ssl.user.action.seller.JoinAction"
+			method="join">
+			<result name="buyer">
+				/WEB-INF/pages/member/buyers/tobesellers.jsp </result>
+			<result name="seller">/WEB-INF/pages/member/sellers/sellers_management.jsp
+			</result>
+			<result name="invalid.token">/WEB-INF/pages/member/buyers/tobesellers.jsp </result>  
+         <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>		
+	</package>
+		<package name="shop.seller2" extends="struts-default" namespace="/member/buyers">
+	
+		<!-- 商家加盟跳转窗口 -->
+		<action name="Join1_*" class="com.ssl.user.action.seller.JoinAction"
+			method="join">
+			<result name="buyer">
+				/WEB-INF/pages/member/buyers/tobesellers.jsp </result>
+			<result name="seller">/WEB-INF/pages/member/sellers/sellers_management.jsp
+			</result>
+			<result name="invalid.token">/WEB-INF/pages/member/buyers/tobesellers.jsp </result>   
+       <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>		
+	</package>
+		<package name="shop.seller6" extends="struts-default" namespace="/user">
+	
+		<!-- 商家加盟跳转窗口 -->
+		<action name="Join1_*" class="com.ssl.user.action.seller.JoinAction"
+			method="join">
+			<result name="buyer">
+				/WEB-INF/pages/member/buyers/tobesellers.jsp </result>
+			<result name="seller">/WEB-INF/pages/member/sellers/sellers_management.jsp
+			</result>
+			<result name="invalid.token">/WEB-INF/pages/member/buyers/tobesellers.jsp </result>   
+       <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>		
+	</package>
+	
+		<package name="shop.seller3" extends="struts-default" namespace="/product">
+	
+		<!-- 商家加盟跳转窗口 -->
+		<action name="Join1_*" class="com.ssl.user.action.seller.JoinAction"
+			method="join">
+			<result name="buyer">
+				/WEB-INF/pages/member/buyers/tobesellers.jsp </result>
+			<result name="seller">/WEB-INF/pages/member/sellers/sellers_management.jsp
+			</result>
+			<result name="invalid.token">/WEB-INF/pages/member/buyers/tobesellers.jsp</result> 
+       <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" /> 
+		</action>		
+	</package>
+	
+	
+	
+	<!-- 店铺审核页 -->
+	<package name="shop.audit" extends="struts-default" namespace="/user">
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.lyq.admin.interceptor.LoginInterceptor">
+			</interceptor>
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInterceptor" />
+				 <interceptor-ref name="token" /> 
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefault" />
+		<global-results>
+			<result name="admin_login">/admin/login.jsp</result>
+		</global-results>
+	
+		<action name="AuditSeller_*" class="com.ssl.user.action.seller.AuditSeller"
+			method="auditSeller">
+			<result>/WEB-INF/pages/member/buyers/buyers_management_index.jsp </result>
+			<result name="invalid.token">/WEB-INF/pages/member/buyers/buyers_management_index.jsp</result>  
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+		
+	
+	</package>
+	
+	<!-- 邮箱注册过程 使用json验证-->
+	<package name="shop.mail" extends="json-default" namespace="/user">
+		<action name="emailAction_*" class="com.ssl.user.email.emailAction" method="{1}">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	<package name="shop.submit.mail1" extends="shop-default" namespace="/user">
+
+		<action name="reg_*" class="com.ssl.user.email.emailAction" method="sendToMailBox">
+			<result>/WEB-INF/pages/user/customer_reg.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/user/customer_reg.jsp</result>  
+          <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+		<action name="jihuo_*" class="com.ssl.user.email.emailAction" method="ReSuccess">
+		<result>/WEB-INF/pages/index.jsp</result>
+           </action>
+	</package>
+	
+		<package name="shop.submit.mail2" extends="shop-default" namespace="/">
+	
+		<action name="reg_*" class="com.ssl.user.email.emailAction" method="sendToMailBox">
+			<result>/WEB-INF/pages/user/customer_reg.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/user/customer_reg.jsp</result> 
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+		<action name="jihuo_*" class="com.ssl.user.email.emailAction" method="ReSuccess">
+		<result>/WEB-INF/pages/index.jsp</result>
+		<result name="invalid.token">/WEB-INF/pages/index.jsp</result>
+          <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+           </action>
+	</package>
+	
+	<!-- -找回密码时，验证输入使用json -->
+
+	<package name=" shop.refind" extends="json-default" namespace="/customer">
+		<action name="ChangePassword_*" class="com.ssl.user.action.admin.ChangePasswordAction" method="checkEmo">
+			<result type="json"></result>
+		</action>
+	</package>
+	
+	<!-- -找回密码时，提交验证表单，以及验证码验证时使用form表单提交 -->
+	<package name="shop.refind.sub" extends="shop-default" namespace="/customer">
+		<action name="ChangePasswordAction_*" class="com.ssl.user.action.admin.ChangePasswordAction" method="sendRandomCode">
+			<result name="next">/WEB-INF/pages/user/customer_resetpassword.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/user/customer_resetpassword.jsp</result> 
+       <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+	</package>
+	<package name="shop.refind.form" extends="shop-default" namespace="/customer">
+
+		<action name="ChangePasswordA_*" class="com.ssl.user.action.admin.ChangePasswordAction" method="resetPassword">
+		 	<result name="win">/WEB-INF/pages/index.jsp</result>
+		 	<result name="invalid.token">/WEB-INF/pages/index.jsp</result>  
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+	</package>
+	<package name="shop.user.base" extends="json-default" namespace="/member/buyers">
+
+	   	<action name="CustomerBaseInfor_*" class="com.ssl.user.action.admin.CustomerBaseInfor" method="showBaseInfor">
+			<result type="json"></result>
+		</action>
+	    <action name="buyers1_*" class="com.ssl.user.action.buyer.BuyerAccountAction" method="account">
+			<result type="json"></result>
+			
+		</action>
+	</package>
+		<package name="shop.user.base1" extends="json-default" namespace="/user">
+
+	   	<action name="CustomerBaseInfor_*" class="com.ssl.user.action.admin.CustomerBaseInfor" method="showBaseInfor">
+			<result type="json"></result>
+		</action>
+	    <action name="buyers1_*" class="com.ssl.user.action.buyer.BuyerAccountAction" method="account">
+			<result type="json"></result>
+			
+		</action>
+	</package>
+	<package name="shop.user.form" extends="shop-default" namespace="/member/buyers">
+
+		<action name="base_*" class="com.ssl.user.action.admin.CustomerBaseInfor" method="updateBaseInfor">
+			<result>/WEB-INF/pages/member/buyers/buyers_management_index.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/member/buyers/buyers_management_index.jsp</result>
+			<interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" /> 
+		</action>
+	
+	</package>
+	<package name="shop.editor" extends="shop-default" namespace="/admin">
+
+		<action name="editor1_*" class="com.ssl.user.xuanchuan.AdvertListAction" method="{1}">
+			<result>/WEB-INF/pages/admin/anc/post_list.jsp</result>
+  
+		</action>
+		<action name="editor2_*" method="execute">
+			<result>/WEB-INF/pages/admin/anc/email_post.jsp</result>
+		</action>
+		<action name="editor3_*"  method="execute">
+			<result>/WEB-INF/pages/admin/anc/mobile_post.jsp</result>
+		</action>
+		<action name="detail_*" class="com.ssl.user.xuanchuan.PostDetailAction" method="execute">
+		  <result>/WEB-INF/pages/admin/anc/post_detail.jsp</result>
+		</action>
+	</package>
+	<!-- 公告发布，发送邮件或者短信 json -->
+	<package name="shop.xuanchuan1" extends="json-default" namespace="/admin">
+		<action name="fa1_*" class="com.ssl.user.xuanchuan.SendEmailCustomerAdvertAction" method="show">
+		    <result type="json"></result>
+		</action>
+			<action name="fa2_*" class="com.ssl.user.xuanchuan.SendEmailStoreAdvertAction" method="show">
+		    <result type="json"></result>
+		</action>
+			<action name="fa3_*" class="com.ssl.user.xuanchuan.SendSMSCustomerAdvertAction" method="show">
+		    <result type="json"></result>
+		</action>
+			<action name="fa4_*" class="com.ssl.user.xuanchuan.SendSMSStoreAdvertAction" method="show">
+		    <result type="json"></result>
+		</action>
+	</package>
+	<!-- 公告发布，发送邮件或者短信 form-->
+	<package name="shop.xuanchuan2" extends="struts-default" namespace="/admin">
+		<action name="fa5_*" class="com.ssl.user.xuanchuan.EditorAction" method="sendToEmail">
+			<result>/WEB-INF/pages/admin/anc/post_list.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/admin/anc/post_list.jsp</result>
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+		<action name="fa6_*" class="com.ssl.user.xuanchuan.EditorAction" method="sendToMobile">
+			<result>/WEB-INF/pages/admin/anc/post_list.jsp</result>
+			<result name="invalid.token">/WEB-INF/pages/admin/anc/post_list.jsp</result>   
+           <interceptor-ref name="token" /> 
+           <interceptor-ref name="defaultStack" />
+		</action>
+	</package>	
+</struts>
